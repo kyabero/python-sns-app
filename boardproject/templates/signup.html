@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customcss %}
+<link href="{% static 'style.css' %}" rel="stylesheet"> <!-- staticフォルダ内のstyle.cssにアクセス -->
+{% endblock customcss %}
+
+{% block content %}
+    <body class="text-center">
+        {{ error }} <!-- IntegrityError発生時に印字 -->
+        <form class="form-signin" method="POST">{% csrf_token %} <!-- [form]でデータと送信するときはPOST。Webページに訪問するときはGET -->
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" placeholder="username" name="username">
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2023</p>
+        </form>
+    </body>
+{% endblock content %}
+
